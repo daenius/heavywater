@@ -28,8 +28,11 @@ class App extends Component {
                             return input + 1
                         }, this.state.count);
                     }}>
-                        count is {this.state.count}
+                        I was clicked {this.state.count} times
                     </button>
+                    <p>
+                        Welcome to asset flipping galore
+                    </p>
                     <p>
                         Edit <code>src/App.tsx</code> and save to test HMR
                     </p>
