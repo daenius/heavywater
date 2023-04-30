@@ -1,7 +1,10 @@
 import {Component} from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import './App.css'
+import {Button, Columns, Container, Level} from 'react-bulma-components';
+import {DecoCard, hardcodedItems} from "./cards/card.tsx";
+import 'bulma/css/bulma.min.css';
+import {Icon} from "@cloudscape-design/components";
 
 class App extends Component {
     state = {count: 0}
@@ -11,36 +14,20 @@ class App extends Component {
     }
 
     render() {
-        return (
-            <>
-                <div>
-                    <a href="https://vitejs.dev" target="_blank">
-                        <img src={viteLogo} className="logo" alt="Vite logo"/>
-                    </a>
-                    <a href="https://react.dev" target="_blank">
-                        <img src={reactLogo} className="logo react" alt="React logo"/>
-                    </a>
-                </div>
-                <h1>Vite + React</h1>
-                <div className="card">
-                    <button onClick={() => {
+        return (<Container>
+                <Level><Level.Item><Columns centered={true} vCentered={true}>
+                    <Columns.Column><a href="https://vitejs.dev" target="_blank"><Icon url={viteLogo} size={"large"}/></a></Columns.Column>
+                    <Columns.Column><a href="https://react.dev" target="_blank"><Icon url={reactLogo} size={"large"}/></a></Columns.Column>
+                </Columns></Level.Item></Level>
+                <Level>
+                    <Level.Item><Button color={"primary"} onClick={() => {
                         this.setCount(input => {
                             return input + 1
                         }, this.state.count);
-                    }}>
-                        I was clicked {this.state.count} times
-                    </button>
-                    <p>
-                        Welcome to asset flipping galore
-                    </p>
-                    <p>
-                        Edit <code>src/App.tsx</code> and save to test HMR
-                    </p>
-                </div>
-                <p className="read-the-docs">
-                    Click on the Vite and React logos to learn more
-                </p>
-            </>
+                    }}>I was clicked {this.state.count} times</Button></Level.Item>
+                </Level>
+                <Columns multiline={true}>{hardcodedItems.map(item => <Columns.Column key={item.name} size={5}>{new DecoCard(item).render()}</Columns.Column>)}</Columns>
+            </Container>
         )
     }
 }
